@@ -7,7 +7,7 @@ import './ConsultCard.css'
 
 function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
-        console.log('totally custom!'),
+        console.log(),
     );
     return (
         <Button className='consult-option-style' style={{backgroundColor: `rgba(3,76,140,0.7)`}} onClick={decoratedOnClick}>
