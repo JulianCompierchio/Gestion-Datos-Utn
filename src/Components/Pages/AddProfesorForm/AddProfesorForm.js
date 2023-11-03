@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddProfesorForm = () => {
   return (
-    <div>AddProfesorForm</div>
+    <div>FormP</div>
   )
 }
 

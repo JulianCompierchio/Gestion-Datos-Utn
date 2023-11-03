@@ -3,6 +3,7 @@ import ADMCard from '../../ADMCard/ADMCard'
 import ConsultCard from '../../Consult/ConsultCard/ConsultCard'
 import Title from '../../Title/Title'
 import './Home.css'
+import AddProfesorForm from '../AddProfesorForm/AddProfesorForm'
 
 const propsAgregar = {
     text : 'Agregar', 
@@ -37,7 +38,8 @@ const Home = () => {
             </div> 
             <div className='col-6'>
                 <ConsultCard/>
-            </div>          
+            </div>
+        
         </div>
     </div>
     )
