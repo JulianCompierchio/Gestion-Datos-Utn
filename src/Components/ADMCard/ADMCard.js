@@ -12,16 +12,16 @@ const ADMCard = (props) => {
                     <div style={{backgroundColor : `rgba(${props.props.background},1)`}} className='card-title-style'>
                         {props.props.text}
                     </div>
-                    <Link to={{ pathname: '/StudentsTable'}} state={{data : props}} className='link-style'>
+                    <Link to={props.props.text === 'Agregar' ? { pathname: '/AddStudentForm'} : { pathname: '/StudentsTable'}} state={{data : props}} className='adm-link-style'>
                         <Button style={{backgroundColor : `rgba(${props.props.background}, 0.4)`}} className='card-option-style'>Alumno</Button>
                     </Link>
-                    <Link to={{ pathname: '/ProfesorsTable'}} state={{data : props}} className='link-style'>
+                    <Link to={props.props.text === 'Agregar' ? { pathname: '/AddProfesorForm'} : { pathname: '/ProfesorsTable'}} state={{data : props}} className='adm-link-style'>
                         <Button style={{backgroundColor : `rgba(${props.props.background}, 0.4)`}} className='card-option-style'>Profesor</Button>
                     </Link>
-                    <Link to={{ pathname: '/ExamsTable' }} state={{data : props}} className='link-style'>
+                    <Link to={props.props.text === 'Agregar' ? { pathname: '/AddExamForm'} : { pathname: '/ExamsTable' }} state={{data : props}} className='adm-link-style'>
                         <Button style={{backgroundColor : `rgba(${props.props.background}, 0.4)`}} className='card-option-style'>Exámen</Button>
                     </Link>
-                    <Link to={{ pathname: '/SubjectsTable'}} state={{data : props}} className='link-style'>
+                    <Link to={ props.props.text === 'Agregar' ? { pathname: '/AddSubjectForm'} : { pathname: '/SubjectsTable'}} state={{data : props}} className='adm-link-style'>
                         <Button style={{backgroundColor : `rgba(${props.props.background}, 0.4)`, borderBottomLeftRadius : 30, borderBottomRightRadius : 30, borderBottom : 0}} className='card-option-style'>
                             Materia
                         </Button>

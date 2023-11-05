@@ -1,16 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
-import './ADMButton.css'
+import './ADMButton.css';
 
 
 const ADMButton = (props) => {
     return (
-    <div className='container-fluid button-container-style'>
+    <div className='container-fluid'>
         <div className='d-flex justify-content-center'>
-            <Link to={''}>
-                <Button className='button-style' style={{}}>BOTON</Button>
-            </Link>
+            <Button className='adm-button-style' style={{ backgroundColor : `rgb(${props.props.background})`}}>{props.props.text}</Button>
         </div>
     </div>
     )

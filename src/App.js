@@ -7,7 +7,7 @@ import ProfesorsTable from './Components/Pages/ProfesorsTable/ProfesorsTable';
 import ExamsTable from './Components/Pages/ExamsTable/ExamsTable';
 import SubjectsTable from './Components/Pages/SubjectsTable/SubjectsTable';
 import ConsultRegisteredStudents from './Components/Pages/ConsultRegisteredStudents/ConsultRegisteredStudents';
-import ConsultStudentsPerShift from './Components/Pages/ConsultStudentsPerShift/ConsultStudentsPerShift';
+import ConsultStudentsPerShift from './Components/Pages/ConsultStudentsPerShift/ConsultStudentsPerShift'
 import ConsultApprovedStudents from './Components/Pages/ConsultApprovedStudents/ConsultApprovedStudents';
 import ConsultShifts from './Components/Pages/ConsultShifts/ConsultShifts';
 import AddStudentForm from './Components/Pages/AddStudentForm/AddStudentForm';

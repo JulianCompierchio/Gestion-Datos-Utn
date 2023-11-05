@@ -1,6 +1,6 @@
 import React from 'react'
 import ADMCard from '../../ADMCard/ADMCard'
-import ConsultCard from '../../Consult/ConsultCard/ConsultCard'
+import ConsultCard from '../../ConsultCard/ConsultCard'
 import Title from '../../Title/Title'
 import './Home.css'
 
