@@ -6,23 +6,22 @@ import Table from 'react-bootstrap/Table';
 import BackButton from '../../Buttons/BackButton/BackButton';
 import '../Styles/TablesStyle.css'
 
-const SubjectsTable = () => {
-  const endpoint = 'subjects/list_all'; 
+const ProfessorsTable = () => {
+  const endpoint = 'professors/list_all'; 
   const [fetchedData, setFetchedData] = useState({ response: [] });
 
   const handleDataFetched = (data) => {
     setFetchedData(data);
   };
-
   const location = useLocation();
   const props = location.state.data.props
-  props.link = "/ModifySubjectForm"
+  props.link = "/ModifyProfessorForm"
   return (
     <div className='container-fluid'>
       <ApiFetcher endpoint={endpoint} onDataFetched={handleDataFetched} />
       <div className='row d-flex justify-content-center align-items-center'>
         <div className='row col-12 table-title-style' style={{ backgroundColor : `rgb(${props.background})`}}>
-          Materias
+          Profesores
         </div>
       </div>
       <div className='row col-12 table-container-style'>
@@ -31,12 +30,19 @@ const SubjectsTable = () => {
             <tr>
               <th>
                 <div className='d-flex align-items-center justify-content-center'>
-                  Código
+                  Nro.Legajo
                 </div>
               </th>
-              <th style={{minWidth : '230px'}}>Materia</th>
-              <th style={{minWidth : '230px'}}>Carrera</th>
-              <th style={{minWidth : '230px'}}>Profesor Titular</th>
+              <th style={{minWidth : '230px'}}>Apellido y Nombre</th>
+              <th style={{minWidth : '240px'}}>Fecha de Nacimiento</th>
+              <th>Sexo</th>
+              <th style={{minWidth : '220px'}}>Dirección</th>
+              <th style={{minWidth : '210px'}}>Tipo de Documento</th>
+              <th style={{minWidth : '200px'}}>Nro.Documento</th>
+              <th style={{minWidth : '230px'}}>Email</th>
+              <th style={{minWidth : '200px'}}>Teléfono</th>
+              <th style={{minWidth : '160px'}}>Estado Civil</th>
+              <th style={{minWidth : '160px'}}>Título</th>
               <th></th>
             </tr>
           </thead>
@@ -44,12 +50,19 @@ const SubjectsTable = () => {
               {fetchedData.response.map((item) => (
               <tr>
                 <th><div className='d-flex align-items-center justify-content-center'>
-                      {item.codMateria}
+                      {item.nroLegajoP}
                     </div>
                 </th>
-                <td key={item.id}>{item.descMat}</td>
-                <td key={item.id}>{item.descCarrera}</td>
-                <td key={item.id}>{item.nroLegajoPNavigation.apeNomb}</td>
+                <td key={item.id}>{item.apeNomb}</td>
+                <td key={item.id}>{item.fecNac}</td>
+                <td key={item.id}>{item.sexo}</td>
+                <td key={item.id}>{item.direccion}</td>
+                <td key={item.id}>{item.codDocNavigation.descDoc}</td>
+                <td key={item.id}>{item.nroDoc}</td>
+                <td key={item.id}>{item.email}</td>
+                <td key={item.id}>{item.telefono}</td>
+                <td key={item.id}>{item.estCivil}</td>
+                <td key={item.id}>{item.codTituloNavigation.descTitulo}</td>
                 <td>
                   <TableButton props = {props}/>
                 </td>
@@ -62,4 +75,4 @@ const SubjectsTable = () => {
   )
 }
 
-export default SubjectsTable
+export default ProfessorsTable
