@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PacmanLoader } from 'react-spinners';
+import { ClockLoader} from 'react-spinners';
 import './Loader.css'
 
 const apiUrl = 'http://www.trabajofinalbdd.somee.com/api';
@@ -33,7 +33,7 @@ function ApiFetcher({ endpoint, onDataFetched }) {
         {loading ? (
         <div className='container-fluid'>
             <div className='row d-flex align items-center justify-content-center loader-style'>
-                <PacmanLoader color="#4DBDFC" size={80}/>
+                <ClockLoader color="#4DBDFC" size={160}/>
             </div>
         </div>
         ) : (

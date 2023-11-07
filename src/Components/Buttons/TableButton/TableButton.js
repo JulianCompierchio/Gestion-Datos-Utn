@@ -5,17 +5,17 @@ import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import './TableButton.css'
 
-const TableButton = (props) => {
+const TableButton = (props,itemdata) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.log(props.text)
+  console.log(itemdata)
   return (
       <div className='container-fluid'>
         {props.props.text === 'Modificar' ?
         <div className='d-flex justify-content-center'>
-          <Link to={props.props.link}>
+          <Link to={props.props.link} state={{ data : itemdata}}>
             <Button className='table-button-style' style={{ backgroundColor : `rgb(${props.props.background})`}}>{props.props.text}</Button>
           </Link>
         </div> : 

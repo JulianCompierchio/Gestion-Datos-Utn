@@ -15,7 +15,8 @@ const StudentsTable = () => {
   };
 
   const location = useLocation();
-  const props = location.state.data.props
+  const props = location.state.data.props;
+
   props.link = "/ModifyStudentForm"
   return (
     <div className='container-fluid'>
@@ -63,7 +64,8 @@ const StudentsTable = () => {
                 <td key={item.id}>{item.telefono}</td>
                 <td key={item.id}>{item.estCivil}</td>
                 <td>
-                  <TableButton props = {props}/>
+                  {console.log(item)}
+                  <TableButton props = {{...props}} itemdata = {item}/>
                 </td>
               </tr>))}
           </tbody>
