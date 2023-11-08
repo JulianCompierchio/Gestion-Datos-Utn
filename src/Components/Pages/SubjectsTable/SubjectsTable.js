@@ -17,11 +17,15 @@ const SubjectsTable = () => {
   const location = useLocation();
   const props = location.state.data.props
   props.link = "/ModifySubjectForm"
+  props.type = "Materia";
+
+  const { text, background, link, type } = props;
+  
   return (
     <div className='container-fluid'>
       <ApiFetcher endpoint={endpoint} onDataFetched={handleDataFetched} />
       <div className='row d-flex justify-content-center align-items-center'>
-        <div className='row col-12 table-title-style' style={{ backgroundColor : `rgb(${props.background})`}}>
+        <div className='row col-12 table-title-style' style={{ backgroundColor: `rgb(${props.background})` }}>
           Materias
         </div>
       </div>
@@ -51,7 +55,13 @@ const SubjectsTable = () => {
                 <td key={item.id}>{item.descCarrera}</td>
                 <td key={item.id}>{item.nroLegajoPNavigation.apeNomb}</td>
                 <td>
-                  <TableButton props = {props}/>
+                  <TableButton
+                      link={link}
+                      background={background}
+                      text={text}
+                      type={type}
+                      item={item}
+                  />
                 </td>
               </tr>))}
           </tbody>

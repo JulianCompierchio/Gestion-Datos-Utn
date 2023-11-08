@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import ApiFetcher from '../../../Api/ApiFetcher';
-import { useLocation } from 'react-router-dom';
-import TableButton from '../../Buttons/TableButton/TableButton';
-import Table from 'react-bootstrap/Table';
-import BackButton from '../../Buttons/BackButton/BackButton';
-import '../Styles/TablesStyle.css'
+import React, { useState } from "react";
+import ApiFetcher from "../../../Api/ApiFetcher";
+import { useLocation } from "react-router-dom";
+import TableButton from "../../Buttons/TableButton/TableButton";
+import Table from "react-bootstrap/Table";
+import BackButton from "../../Buttons/BackButton/BackButton";
+import "../Styles/TablesStyle.css";
 
 const StudentsTable = () => {
-  const endpoint = 'students/list_all'; 
+  const endpoint = "students/list_all";
   const [fetchedData, setFetchedData] = useState({ response: [] });
 
   const handleDataFetched = (data) => {
@@ -16,43 +16,57 @@ const StudentsTable = () => {
 
   const location = useLocation();
   const props = location.state.data.props;
+  props.link = "/ModifyStudentForm";
+  props.type = "Alumno";
 
-  props.link = "/ModifyStudentForm"
+  const { text, background, link, type } = props;
+
   return (
-    <div className='container-fluid'>
+    <div className="container-fluid">
       <ApiFetcher endpoint={endpoint} onDataFetched={handleDataFetched} />
-      <div className='row d-flex justify-content-center align-items-center'>
-        <div className='row col-12 table-title-style' style={{ backgroundColor : `rgb(${props.background})`}}>
+      <div className="row d-flex justify-content-center align-items-center">
+        <div
+          className="row col-12 table-title-style"
+          style={{ backgroundColor: `rgb(${props.background})` }}
+        >
           Alumnos
         </div>
       </div>
-      <div className='row col-12 table-container-style'>
-        <Table responsive striped bordered hover variant='dark'className='table-style'>
+      <div className="row col-12 table-container-style">
+        <Table
+          responsive
+          striped
+          bordered
+          hover
+          variant="dark"
+          className="table-style"
+        >
           <thead>
             <tr>
               <th>
-                <div className='d-flex align-items-center justify-content-center'>
+                <div className="d-flex align-items-center justify-content-center">
                   Nro.Legajo
                 </div>
               </th>
-              <th style={{minWidth : '230px'}}>Apellido y Nombre</th>
-              <th style={{minWidth : '240px'}}>Fecha de Nacimiento</th>
+              <th style={{ minWidth: "230px" }}>Apellido y Nombre</th>
+              <th style={{ minWidth: "240px" }}>Fecha de Nacimiento</th>
               <th>Sexo</th>
-              <th style={{minWidth : '220px'}}>Dirección</th>
-              <th style={{minWidth : '210px'}}>Tipo de Documento</th>
-              <th style={{minWidth : '200px'}}>Nro.Documento</th>
-              <th style={{minWidth : '230px'}}>Email</th>
-              <th style={{minWidth : '200px'}}>Teléfono</th>
-              <th style={{minWidth : '160px'}}>Estado Civil</th>
+              <th style={{ minWidth: "220px" }}>Dirección</th>
+              <th style={{ minWidth: "210px" }}>Tipo de Documento</th>
+              <th style={{ minWidth: "200px" }}>Nro.Documento</th>
+              <th style={{ minWidth: "230px" }}>Email</th>
+              <th style={{ minWidth: "200px" }}>Teléfono</th>
+              <th style={{ minWidth: "160px" }}>Estado Civil</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-              {fetchedData.response.map((item) => (
+            {fetchedData.response.map((item) => (
               <tr>
-                <th><div className='d-flex align-items-center justify-content-center'>
-                      {item.nroLegajoA}
-                    </div>
+                <th>
+                  <div className="d-flex align-items-center justify-content-center">
+                    {item.nroLegajoA}
+                  </div>
                 </th>
                 <td key={item.id}>{item.apeNomb}</td>
                 <td key={item.id}>{item.fecNac}</td>
@@ -64,16 +78,22 @@ const StudentsTable = () => {
                 <td key={item.id}>{item.telefono}</td>
                 <td key={item.id}>{item.estCivil}</td>
                 <td>
-                  {console.log(item)}
-                  <TableButton props = {{...props}} itemdata = {item}/>
+                  <TableButton
+                    link={link}
+                    background={background}
+                    text={text}
+                    type={type}
+                    item={item}
+                  />
                 </td>
-              </tr>))}
+              </tr>
+            ))}
           </tbody>
         </Table>
-        <BackButton/>
+        <BackButton />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default StudentsTable
+export default StudentsTable;

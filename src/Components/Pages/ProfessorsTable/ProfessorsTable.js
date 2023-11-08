@@ -16,6 +16,10 @@ const ProfessorsTable = () => {
   const location = useLocation();
   const props = location.state.data.props
   props.link = "/ModifyProfessorForm"
+  props.type = "Profesor";
+
+  const { text, background, link, type } = props;
+
   return (
     <div className='container-fluid'>
       <ApiFetcher endpoint={endpoint} onDataFetched={handleDataFetched} />
@@ -49,9 +53,10 @@ const ProfessorsTable = () => {
           <tbody>
               {fetchedData.response.map((item) => (
               <tr>
-                <th><div className='d-flex align-items-center justify-content-center'>
+                <th>
+                  <div className='d-flex align-items-center justify-content-center'>
                       {item.nroLegajoP}
-                    </div>
+                  </div>
                 </th>
                 <td key={item.id}>{item.apeNomb}</td>
                 <td key={item.id}>{item.fecNac}</td>
@@ -64,7 +69,13 @@ const ProfessorsTable = () => {
                 <td key={item.id}>{item.estCivil}</td>
                 <td key={item.id}>{item.codTituloNavigation.descTitulo}</td>
                 <td>
-                  <TableButton props = {props}/>
+                  <TableButton
+                      link={link}
+                      background={background}
+                      text={text}
+                      type={type}
+                      item={item}
+                  />
                 </td>
               </tr>))}
           </tbody>
