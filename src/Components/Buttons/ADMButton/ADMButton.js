@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 import './ADMButton.css';
 
 
-const ADMButton = (props) => {
+const ADMButton = ({background, text, item}) => {
+    console.log(item)
     return (
     <div className='container-fluid'>
         <div className='d-flex justify-content-center'>
-            <Button className='adm-button-style' style={{ backgroundColor : `rgb(${props.props.background})`}} type='submit'>{props.props.text}</Button>
+            <Button className='adm-button-style' style={{ backgroundColor : `rgb(${background})`}} type='submit'>{text}</Button>
         </div>
     </div>
     )

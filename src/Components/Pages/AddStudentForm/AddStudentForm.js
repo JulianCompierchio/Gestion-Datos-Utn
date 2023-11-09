@@ -25,7 +25,19 @@ const AddStudentForm = () => {
     dir : '',
     email : '',
     tel : '',
-    estCivil : ''
+    estCivil : '',
+  });
+
+  const [studentData, setStudentData] = useState({
+    apeNomb: "",
+    nroDoc: "",
+    direccion: "",
+    email: "",
+    telefono: "",
+    codDoc: "",
+    sexo: "",
+    fecNac: "",
+    estCivil: "",
   });
 
   const handleOnChange = (evt) => {
@@ -41,6 +53,19 @@ const AddStudentForm = () => {
         [evt.target.name]: evt.target.value,
       });
     }
+
+    setStudentData({
+      ...studentData,
+      apeNomb : dataForm.ape + ' ' + dataForm.nom, 
+      nroDoc : dataForm.nroDoc,
+      direccion : dataForm.dir,
+      email: dataForm.email,
+      telefono: dataForm.telefono,
+      codDoc : dataForm.tipoDoc,
+      sexo : dataForm.femenino === true ? 'F' : 'M',
+      fecNac: dataForm.fNacimiento + 'T00:00:00',
+      estCivil : dataForm.estCivil,
+    })
   };
 
   const [validated, setValidated] = useState(false);
@@ -117,6 +142,7 @@ const AddStudentForm = () => {
             <Form.Group>
               <Form.Label>Tipo de Documento</Form.Label>
               <Form.Control as="select" name="tipoDoc" value={dataForm.tipoDoc} onChange={handleOnChange}>
+              <option value="" disabled>Seleccione un Tipo de Documento</option>
               {fetchedData.response.map((item) => (
                 <option name="tipoDoc" value={item.codDoc} key={item.codDoc}>{item.descDoc}</option>
               ))}
@@ -155,7 +181,7 @@ const AddStudentForm = () => {
             </Form.Group>
             <div className="form-buttons-style">
               <BackButton props={{margin : '0px'}}/>
-              <ADMButton props={{ background: '52, 199, 0', text : 'Agregar'}}/>
+              <ADMButton background={'52, 199, 0'} text={'Agregar'} item={studentData}/>
             </div>
           </Form>
         </Col>
@@ -163,5 +189,6 @@ const AddStudentForm = () => {
     </Container>
   );
 };
+
 
 export default AddStudentForm;

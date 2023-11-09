@@ -147,7 +147,7 @@ const ModifyProfessorForm = () => {
               <Form.Label>Tipo de Documento</Form.Label>
               <Form.Control as="select" name="tipoDoc" value={dataForm.tipoDoc} onChange={handleOnChange}>
               {fetchedDataDoc.response.map((item) => (
-                <option name="tipoDoc" value={item.codDoc} key={item.codDoc}>{item.descDoc}</option>
+                <option value={item.codDoc} key={item.codDoc}>{item.descDoc}</option>
               ))}
               </Form.Control>
             </Form.Group>
@@ -187,7 +187,7 @@ const ModifyProfessorForm = () => {
               <Form.Label>Título</Form.Label>
               <Form.Control as="select" name="codTitulo" value={dataForm.codTitulo} onChange={handleOnChange}>
               {fetchedDataTit.response.map((item) => (
-                <option name="codTitulo" value={item.codTitulos} key={item.codTitulos}>{item.descTitulo}</option>
+                <option value={item.codTitulos} key={item.codTitulos}>{item.descTitulo}</option>
               ))}
               </Form.Control>
             </Form.Group>

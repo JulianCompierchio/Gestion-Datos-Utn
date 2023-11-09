@@ -81,7 +81,7 @@ const ModifySubjectForm = () => {
               <Form.Label>Numero Legajo Profesor Titular</Form.Label>
                 <Form.Control as="select" type="text" required value={dataForm.nroLegajoP} onChange={handleOnChange}>
                 {fetchedData.response.map((item) => (
-                <option name="nroLegajoP" value={item.nroLegajoP} key={item.nroLegajoP}>{item.apeNomb}</option>
+                <option value={item.nroLegajoP} key={item.nroLegajoP}>{item.apeNomb}</option>
                 ))}
                 </Form.Control>
             </Form.Group>

@@ -79,7 +79,7 @@ const ModifyExamForm = () => {
               <Form.Label>Nro.Legajo Alumno</Form.Label>
               <Form.Control as="select" name="legajo" value={dataForm.legajo} onChange={handleOnChange}>
               {fetchedDataAl.response.map((item) => (
-                <option name="legajo" key={item.nroLegajoA} value={item.nroLegajoA}>{item.nroLegajoA}</option>
+                <option key={item.nroLegajoA} value={item.nroLegajoA}>{item.nroLegajoA}</option>
               ))}
               </Form.Control>
             </Form.Group>
@@ -88,7 +88,7 @@ const ModifyExamForm = () => {
               <Form.Label>Código de Materia</Form.Label>
               <Form.Control as="select" name="codMat" value={dataForm.codMat} onChange={handleOnChange}>
               {fetchedDataMa.response.map((item) => (
-                <option name="codMat" key={item.codMateria} value={item.codMateria}>{item.descMat}</option>
+                <option key={item.codMateria} value={item.codMateria}>{item.descMat}</option>
               ))}
               </Form.Control>
             </Form.Group>
@@ -97,7 +97,7 @@ const ModifyExamForm = () => {
               <Form.Label>Código de Turno</Form.Label>
               <Form.Control as="select" name="codTurno" value={dataForm.codTurno} onChange={handleOnChange}>
               {fetchedDataTu.response.map((item) => (
-                <option name="codTurno" key={item.codTurno} value={item.codTurno}>{item.descTurno}</option>
+                <option key={item.codTurno} value={item.codTurno}>{item.descTurno}</option>
               ))}
               </Form.Control>
             </Form.Group>
