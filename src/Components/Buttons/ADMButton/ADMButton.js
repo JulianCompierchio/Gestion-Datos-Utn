@@ -7,7 +7,7 @@ const ADMButton = (props) => {
     return (
     <div className='container-fluid'>
         <div className='d-flex justify-content-center'>
-            <Button className='adm-button-style' style={{ backgroundColor : `rgb(${props.props.background})`}}>{props.props.text}</Button>
+            <Button className='adm-button-style' style={{ backgroundColor : `rgb(${props.props.background})`}} type='submit'>{props.props.text}</Button>
         </div>
     </div>
     )

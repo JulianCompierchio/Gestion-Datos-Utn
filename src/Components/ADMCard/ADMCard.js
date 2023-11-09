@@ -15,7 +15,7 @@ const ADMCard = (props) => {
                     <Link to={props.props.text === 'Agregar' ? { pathname: '/AddStudentForm'} : { pathname: '/StudentsTable'}} state={{data : props}} className='adm-link-style'>
                         <Button style={{backgroundColor : `rgba(${props.props.background}, 0.4)`}} className='card-option-style'>Alumno</Button>
                     </Link>
-                    <Link to={props.props.text === 'Agregar' ? { pathname: '/AddProfesorForm'} : { pathname: '/ProfesorsTable'}} state={{data : props}} className='adm-link-style'>
+                    <Link to={props.props.text === 'Agregar' ? { pathname: '/AddProfessorForm'} : { pathname: '/ProfesorsTable'}} state={{data : props}} className='adm-link-style'>
                         <Button style={{backgroundColor : `rgba(${props.props.background}, 0.4)`}} className='card-option-style'>Profesor</Button>
                     </Link>
                     <Link to={props.props.text === 'Agregar' ? { pathname: '/AddExamForm'} : { pathname: '/ExamsTable' }} state={{data : props}} className='adm-link-style'>
