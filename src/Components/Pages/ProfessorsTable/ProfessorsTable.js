@@ -80,7 +80,7 @@ const ProfessorsTable = () => {
               </tr>))}
           </tbody>
         </Table>
-        <BackButton/>
+        <BackButton props={{margin : '50px'}}/>
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ import React from 'react';
 import Body from './Components/Body/Body';
 import Home from './Components/Pages/Home/Home';
 import StudentsTable from './Components/Pages/StudentsTable/StudentsTable';
-import ProfesorsTable from './Components/Pages/ProfessorsTable/ProfessorsTable';
+import ProfessorsTable from './Components/Pages/ProfessorsTable/ProfessorsTable';
 import ExamsTable from './Components/Pages/ExamsTable/ExamsTable';
 import SubjectsTable from './Components/Pages/SubjectsTable/SubjectsTable';
 import ConsultRegisteredStudents from './Components/Pages/ConsultRegisteredStudents/ConsultRegisteredStudents';
@@ -31,7 +31,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/StudentsTable" element={<StudentsTable/>} />
-            <Route path="/ProfesorsTable" element={<ProfesorsTable/>} />
+            <Route path="/ProfessorsTable" element={<ProfessorsTable/>} />
             <Route path="/ExamsTable" element={<ExamsTable/>} />
             <Route path="/SubjectsTable" element={<SubjectsTable/>} />
             <Route path="/ConsultRegisteredStudents" element={<ConsultRegisteredStudents/>} />

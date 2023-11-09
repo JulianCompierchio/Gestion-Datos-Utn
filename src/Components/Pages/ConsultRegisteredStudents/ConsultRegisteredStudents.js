@@ -44,7 +44,7 @@ const ConsultRegisteredStudents = () => {
                         </tr>))}
                     </tbody>
                 </Table>
-                <BackButton/>
+                <BackButton props={{margin : '50px'}}/>
             </div>
         </div>
     )
