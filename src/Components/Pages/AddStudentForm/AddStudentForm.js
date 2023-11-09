@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ApiFetcher from "../../../Api/ApiFetcher";
 import { Container, Row, Col , Form} from 'react-bootstrap';
 import BackButton from "../../Buttons/BackButton/BackButton";
@@ -7,19 +7,31 @@ import "../Styles/FormsStyle.css";
 
 const AddStudentForm = () => {
 
-  const endpoint = "type_docs/list_all";
-  const [fetchedData, setFetchedData] = useState({ response: [] });
+  const endpointDoc = "type_docs/list_all";
 
-  const handleDataFetched = (data) => {
-    setFetchedData(data);
+  const [fetchedDataDoc, setFetchedDataDoc] = useState({ response: [] });
+  const [studentData, setStudentData] = useState({
+    apeNomb: '',
+    fecNac: '',
+    codDoc: '',
+    nroDoc: '',
+    direccion: '',
+    email: '',
+    sexo: '',
+    telefono: '',
+    estCivil: '',
+  });
+
+  const handleDataFetchedDoc = (data) => {
+    setFetchedDataDoc(data);
   };
 
   const [dataForm,setDataForm] = useState({
     ape : '',
     nom : '',
+    apeNomb: '',
     fNacimiento : '',
-    femenino : '',
-    masculino : '',
+    sexo : '',
     tipoDoc : '',
     nroDoc : '',
     dir : '',
@@ -28,61 +40,59 @@ const AddStudentForm = () => {
     estCivil : '',
   });
 
-  const [studentData, setStudentData] = useState({
-    apeNomb: "",
-    nroDoc: "",
-    direccion: "",
-    email: "",
-    telefono: "",
-    codDoc: "",
-    sexo: "",
-    fecNac: "",
-    estCivil: "",
-  });
-
   const handleOnChange = (evt) => {
-    if (evt.target.type === "radio") {
+    const { name, value, type } = evt.target;
+    if (type === "radio") {
       setDataForm({
         ...dataForm,
-        masculino: evt.target.name === "M",
-        femenino: evt.target.name === "F",
+        sexo: value,
+      });
+    } else if (name === "ape" || name === "nom") {
+      setDataForm({
+        ...dataForm,
+        [name]: value,
+        apeNomb: name === "apellido" ? value + " " + dataForm.nom : dataForm.ape + " " + value,
       });
     } else {
       setDataForm({
         ...dataForm,
-        [evt.target.name]: evt.target.value,
+        [name]: value,
       });
     }
-
-    setStudentData({
-      ...studentData,
-      apeNomb : dataForm.ape + ' ' + dataForm.nom, 
-      nroDoc : dataForm.nroDoc,
-      direccion : dataForm.dir,
-      email: dataForm.email,
-      telefono: dataForm.telefono,
-      codDoc : dataForm.tipoDoc,
-      sexo : dataForm.femenino === true ? 'F' : 'M',
-      fecNac: dataForm.fNacimiento + 'T00:00:00',
-      estCivil : dataForm.estCivil,
-    })
   };
 
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
+
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
+      setValidated(true);
+      return;
     }
 
-    setValidated(true);
+    setStudentData({
+      apeNomb: dataForm.apeNomb,
+      fecNac: dataForm.fNacimiento + 'T00:00:00',
+      codDoc: dataForm.tipoDoc,
+      nroDoc: dataForm.nroDoc,
+      direccion: dataForm.dir,
+      email: dataForm.email,
+      sexo: dataForm.sexo,
+      telefono: dataForm.tel,
+      estCivil: dataForm.estCivil,
+    })
   };
 
-  return(
+  useEffect(()=>{
+    console.log(studentData)
+  },[studentData])
+
+  return (
     <Container>
-      <ApiFetcher endpoint={endpoint} onDataFetched={handleDataFetched} />
+      <ApiFetcher endpoint={endpointDoc} onDataFetched={handleDataFetchedDoc} />
       <Row className="justify-content-center">
         <Col md={6}>
           <div className='form-title-style' style={{backgroundColor : 'rgb(52, 199, 0)', marginBottom : '20px'}}>
@@ -113,37 +123,37 @@ const AddStudentForm = () => {
                 Ingrese su Fecha de nacimiento
               </Form.Control.Feedback>
             </Form.Group>
-
+            
             <Form.Group>
               <Form.Label>Sexo</Form.Label>
-                <div className='d-flex '>
-                  <Form.Check
-                    type="radio"
-                    label="Masculino"
-                    name="M"
-                    checked = {dataForm.masculino}
-                    className="form-check-inline mr-2"
-                    onChange={handleOnChange}
-                    required/>
-                  <Form.Check
-                    type="radio"
-                    label="Femenino"
-                    name="F"
-                    checked={dataForm.femenino}
-                    className="form-check-inline"
-                    onChange={handleOnChange}
-                    required/>
-                </div>
-                  <Form.Control.Feedback type="invalid">
-                    Seleccione al menos una opción.
-                  </Form.Control.Feedback>
+              <div className='d-flex '>
+                <Form.Check
+                  type="radio"
+                  label="Masculino"
+                  name="sexo"  // Cambiado de "M" a "sexo"
+                  value={"M"}
+                  className="form-check-inline mr-2"
+                  onChange={handleOnChange}
+                  required/>
+                <Form.Check
+                  type="radio"
+                  label="Femenino"
+                  name="sexo"  // Cambiado de "F" a "sexo"
+                  value={"F"}
+                  className="form-check-inline"
+                  onChange={handleOnChange}
+                  required/>
+              </div>
+              <Form.Control.Feedback type="invalid">
+                Seleccione al menos una opciÃ³n.
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group>
               <Form.Label>Tipo de Documento</Form.Label>
               <Form.Control as="select" name="tipoDoc" value={dataForm.tipoDoc} onChange={handleOnChange}>
-              <option value="" disabled>Seleccione un Tipo de Documento</option>
-              {fetchedData.response.map((item) => (
+              <option name="tipoDoc" value="seleccionar_algo" key="seleccionar_algo">Seleccione el tipo de documento</option>
+              {fetchedDataDoc.response.map((item) => (
                 <option name="tipoDoc" value={item.codDoc} key={item.codDoc}>{item.descDoc}</option>
               ))}
               </Form.Control>
@@ -177,18 +187,23 @@ const AddStudentForm = () => {
 
             <Form.Group>
               <Form.Label>Estado civil</Form.Label>
-              <Form.Control type="text" name="estCivil" placeholder='(Opcional)' maxLength="10" value={dataForm.estCivil} onChange={handleOnChange}/>
+              <Form.Control as="select" name="estCivil" value={dataForm.estCivil} onChange={handleOnChange}>
+                <option name="estCivil" value="seleccionar_algo" key="seleccionar_algo">Seleccione el estado civil</option>
+                <option name="estCivil" value="SOLTERO/A" key="SOLTERO/A">SOLTERO/A</option>
+                <option name="estCivil" value="CASADO/A" key="CASADO/A">CASADO/A</option>
+                <option name="estCivil" value="OTRO" key="OTRO">OTRO</option>
+              </Form.Control>
             </Form.Group>
+
             <div className="form-buttons-style">
               <BackButton props={{margin : '0px'}}/>
-              <ADMButton background={'52, 199, 0'} text={'Agregar'} item={studentData}/>
+              <ADMButton background={'52, 199, 0'} text={'Agregar'} item={studentData} type={'Alumno'}/>
             </div>
           </Form>
         </Col>
       </Row>
     </Container>
   );
-};
+}
 
-
-export default AddStudentForm;
+export default AddStudentForm

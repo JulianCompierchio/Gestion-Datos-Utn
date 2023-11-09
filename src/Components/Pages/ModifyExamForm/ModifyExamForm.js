@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import ApiFetcher from "../../../Api/ApiFetcher";
 import { useLocation } from "react-router-dom";
 import { Container, Row, Col , Form} from 'react-bootstrap';
@@ -15,6 +15,14 @@ const ModifyExamForm = () => {
   const [fetchedDataAl, setFetchedDataAl] = useState({ response: [] });
   const [fetchedDataMa, setFetchedDataMa] = useState({ response: [] });
   const [fetchedDataTu, setFetchedDataTu] = useState({ response: [] });
+  const [examData, setExamData] = useState({
+    nroLegajoA : '',
+    codMat : '',
+    codTurno : '',
+    año : '',
+    nota : '',
+    fechaInscripcion : '',
+  });
 
   const handleDataFetchedAl = (data) => {
     setFetchedDataAl(data);
@@ -35,12 +43,12 @@ const ModifyExamForm = () => {
   const [fInsc] = itemdata.fechaInscripcion.split('T');
 
   const [dataForm,setDataForm] = useState({
-    legajo : itemdata.nroLegajoA,
+    nroLegajoA : itemdata.nroLegajoA,
     codMat : itemdata.codMat,
     codTurno : itemdata.codTurno,
     año : itemdata.año,
     nota : itemdata.nota,
-    fechaIns : fInsc
+    fechaInscripcion : fInsc
   });
 
   const handleOnChange = (evt) => {
@@ -54,6 +62,7 @@ const ModifyExamForm = () => {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -61,7 +70,20 @@ const ModifyExamForm = () => {
     }
 
     setValidated(true);
+
+    setExamData({
+    nroLegajoA : dataForm.nroLegajoA,
+    codMat : dataForm.codMat,
+    codTurno : dataForm.codTurno,
+    año : dataForm.año,
+    nota : dataForm.nota,
+    fechaInscripcion : dataForm.fechaInscripcion + 'T00:00:00',
+    })
   };
+
+  useEffect(()=>{
+    console.log(examData)
+  },[examData])
 
   return(
     <Container>
@@ -77,7 +99,7 @@ const ModifyExamForm = () => {
 
             <Form.Group>
               <Form.Label>Nro.Legajo Alumno</Form.Label>
-              <Form.Control as="select" name="legajo" value={dataForm.legajo} onChange={handleOnChange}>
+              <Form.Control as="select" name="nroLegajoA" value={dataForm.nroLegajoA} onChange={handleOnChange}>
               {fetchedDataAl.response.map((item) => (
                 <option key={item.nroLegajoA} value={item.nroLegajoA}>{item.nroLegajoA}</option>
               ))}
@@ -88,7 +110,7 @@ const ModifyExamForm = () => {
               <Form.Label>Código de Materia</Form.Label>
               <Form.Control as="select" name="codMat" value={dataForm.codMat} onChange={handleOnChange}>
               {fetchedDataMa.response.map((item) => (
-                <option key={item.codMateria} value={item.codMateria}>{item.descMat}</option>
+                <option key={item.codMat} value={item.codMat}>{item.descMat}</option>
               ))}
               </Form.Control>
             </Form.Group>
@@ -117,12 +139,12 @@ const ModifyExamForm = () => {
 
             <Form.Group>
               <Form.Label>Fecha de Inscripción</Form.Label>
-              <Form.Control type="date" name="fechaIns"required value={dataForm.fechaIns} onChange={handleOnChange}/>
+              <Form.Control type="date" name="fechaInscripcion" required value={dataForm.fechaInscripcion} onChange={handleOnChange}/>
             </Form.Group>
 
             <div className="form-buttons-style">
               <BackButton props={{margin : '0px'}}/>
-              <ADMButton props={{ background: '211, 114, 28', text : 'Modificar'}}/>
+              <ADMButton background={'211, 114, 28'} text={'Modificar'} item={examData} type={'Exámen'}/>
             </div>
           </Form>
         </Col>

@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
+import ADMButton from "../../Buttons/ADMButton/ADMButton";
+
 import "./TableButton.css";
 
 const TableButton = ({ link, background, text, type, item }) => {
@@ -54,12 +56,7 @@ const TableButton = ({ link, background, text, type, item }) => {
               >
                 Cancelar
               </Button>
-              <Button
-                className="table-button-style"
-                style={{ backgroundColor: `rgb(${background})` }}
-              >
-                Confimar
-              </Button>
+              <ADMButton background={'238, 22, 35'} text={'Eliminar'} item={item} type={type}/>
             </Modal.Footer>
           </Modal>
         </div>

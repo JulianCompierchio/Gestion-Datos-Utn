@@ -217,7 +217,7 @@ const AddProfessorForm = () => {
 
             <div className="form-buttons-style">
               <BackButton props={{margin : '0px'}}/>
-              <ADMButton background={'52, 199, 0'} text={'Agregar'} item={professorData}/>
+              <ADMButton background={'52, 199, 0'} text={'Agregar'} item={professorData} type={'Profesor'}/>
             </div>
           </Form>
         </Col>

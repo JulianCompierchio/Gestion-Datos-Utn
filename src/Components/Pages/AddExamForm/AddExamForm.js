@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import ApiFetcher from "../../../Api/ApiFetcher";
 import { Container, Row, Col , Form} from 'react-bootstrap';
 import BackButton from "../../Buttons/BackButton/BackButton";
@@ -14,6 +14,14 @@ const AddExamForm = () => {
   const [fetchedDataAl, setFetchedDataAl] = useState({ response: [] });
   const [fetchedDataMa, setFetchedDataMa] = useState({ response: [] });
   const [fetchedDataTu, setFetchedDataTu] = useState({ response: [] });
+  const [examData, setExamData] = useState({
+    legajo : '',
+    codMat : '',
+    codTurno : '',
+    año : '',
+    nota : '',
+    fechaIns : '',
+  });
 
   const handleDataFetchedAl = (data) => {
     setFetchedDataAl(data);
@@ -47,6 +55,7 @@ const AddExamForm = () => {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -54,7 +63,20 @@ const AddExamForm = () => {
     }
 
     setValidated(true);
+
+    setExamData({
+    legajo : dataForm.legajo,
+    codMat : dataForm.codMat,
+    codTurno : dataForm.codTurno,
+    año : dataForm.año,
+    nota : dataForm.nota,
+    fechaIns : dataForm.fechaIns + 'T00:00:00',
+    })
   };
+
+  useEffect(()=>{
+    console.log(examData)
+  },[examData])
 
   return(
     <Container>
@@ -118,7 +140,7 @@ const AddExamForm = () => {
 
             <div className="form-buttons-style">
               <BackButton props={{margin : '0px'}}/>
-              <ADMButton props={{ background: '52, 199, 0', text : 'Agregar'}}/>
+              <ADMButton background={'52, 199, 0'} text={'Agregar'} item={examData} type={'Exámen'}/>
             </div>
           </Form>
         </Col>
