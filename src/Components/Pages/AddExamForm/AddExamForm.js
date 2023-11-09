@@ -15,12 +15,12 @@ const AddExamForm = () => {
   const [fetchedDataMa, setFetchedDataMa] = useState({ response: [] });
   const [fetchedDataTu, setFetchedDataTu] = useState({ response: [] });
   const [examData, setExamData] = useState({
-    legajo : '',
+    nroLegajoA : '',
     codMat : '',
     codTurno : '',
     año : '',
     nota : '',
-    fechaIns : '',
+    fechaInscripcion : '',
   });
 
   const handleDataFetchedAl = (data) => {
@@ -65,18 +65,18 @@ const AddExamForm = () => {
     setValidated(true);
 
     setExamData({
-    legajo : dataForm.legajo,
+    nroLegajoA : parseInt(dataForm.legajo),
     codMat : dataForm.codMat,
     codTurno : dataForm.codTurno,
     año : dataForm.año,
-    nota : dataForm.nota,
-    fechaIns : dataForm.fechaIns + 'T00:00:00',
+    nota : parseInt(dataForm.nota),
+    fechaInscripcion : dataForm.fechaIns + 'T00:00:00',
     })
   };
 
   useEffect(()=>{
     console.log(examData)
-  },[examData])
+  }, [examData])
 
   return(
     <Container>

@@ -18,7 +18,7 @@ const ADMButton = ({background, text, item, type}) => {
                 url = 'http://www.trabajofinalbdd.somee.com/api/students/save';
             }else if (type === "Materia"){
                 url = 'http://www.trabajofinalbdd.somee.com/api/subjects/save';
-            }else{
+            }else if (type === "Exámen"){
                 url = 'http://www.trabajofinalbdd.somee.com/api/exams/save';
             }
         }else if( text === "Eliminar"){

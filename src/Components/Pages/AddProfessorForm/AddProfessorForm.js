@@ -97,6 +97,7 @@ const AddProfessorForm = () => {
 
   useEffect(()=>{
     console.log(professorData)
+    setProfessorData({...professorData})
   },[professorData])
 
   return (
