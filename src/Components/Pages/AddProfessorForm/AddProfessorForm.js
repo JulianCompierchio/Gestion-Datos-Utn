@@ -21,7 +21,7 @@ const AddProfessorForm = () => {
     direccion: '',
     email: '',
     telefono: '',
-    sexo: '',
+    sexo: 'Masculino',
     fecNac: '',
     estCivil: '',
     codTitulo: ''
@@ -120,6 +120,8 @@ const AddProfessorForm = () => {
                     name="sexo"
                     id="sexo-masculino"
                     className="form-check-inline mr-2"
+                    onChange={handleChange}
+                    defaultChecked={formData.sexo === 'Masculino'}
                   />
                   <Form.Check
                     type="radio"
@@ -127,13 +129,15 @@ const AddProfessorForm = () => {
                     name="sexo"
                     id="sexo-femenino"
                     className="form-check-inline"
+                    onChange={handleChange}
                   />
                 </div>
             </Form.Group>
 
             <Form.Group>
               <Form.Label>Tipo de Documento</Form.Label>
-              <Form.Control as="select" name="codDoc" value={formData.fecNac} onChange={handleChange}>
+              <Form.Control as="select" name="codDoc" value={formData.codDoc} onChange={handleChange} required>
+                <option value="" disabled hidden>Selecciona un tipo de documento</option>
                 {fetchedData.response.map((item) => (
                   <option key={item.codDoc} value={item.codDoc}>
                     {item.descDoc}
@@ -157,7 +161,7 @@ const AddProfessorForm = () => {
 
             <Form.Group>
               <Form.Label>Email</Form.Label>
-              <Form.Control type="Email" required />
+              <Form.Control type="email" required name="email" value={formData.email} onChange={handleChange}/>
               <Form.Control.Feedback type="invalid" maxLength="50" name="email" value={formData.email} onChange={handleChange}>
                 Ingrese una direccion de correo valida
               </Form.Control.Feedback>
